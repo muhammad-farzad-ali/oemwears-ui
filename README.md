@@ -1,10 +1,15 @@
-# OEMWears SvelteKit
+# Sportbekleidungsagentur — SvelteKit site
 
-The public website for OEMWears — a sportswear manufacturer. Built as a
-single-page application with SvelteKit + Svelte 5 + Tailwind 4, fully
-client-side rendered, hosted on GitHub Pages. All content (products,
-contact info, page copy) lives in plain JSON / TS files in this repo — no
-database, no server.
+The public website for **Sportbekleidungsagentur** — a Germany-based
+sportswear production agency that coordinates custom sportswear
+manufacturing through a vetted network of overseas production partners
+in **Pakistan, Turkey, Portugal, and China**.
+
+Built as a single-page application with **SvelteKit + Svelte 5 + Tailwind 4**,
+fully client-side rendered, hosted on **GitHub Pages**. All content
+(apparel categories, services, partner countries, contact info, page
+copy) lives in plain JSON / TS files in this repo — no database, no
+server. The default build is **German** (`LOCALE = 'de'`).
 
 The original site (Next.js + Prisma + Resend + admin dashboard) is kept
 under `oemwears/` for reference only. Do not edit files inside that
@@ -47,20 +52,24 @@ src/
 ├── lib/
 │   ├── site.config.ts          # ⭐ edit this to change locale / brand / contact / webhook
 │   ├── content/                # i18n UI strings (en.ts, de.ts)
-│   ├── data/                   # static JSON "database" (products, categories, …)
+│   ├── data/                   # static JSON "database" (apparel types, services, partner countries, …)
 │   ├── types.ts                # TypeScript shapes for data + i18n
 │   ├── utils/                  # cn(), discord webhook, SEO helper
-│   └── components/             # UI primitives, layout, page sections, contact
+│   └── components/
+│       ├── home/               # home page sections (Hero, USPs, PartnerCountries, FeaturedApparel, …)
+│       ├── layout/             # Navigation, Footer
+│       ├── contact/            # ContactForm, ContactInfoPanel
+│       └── ui/                 # shared UI primitives (Card, Button, …)
 └── routes/
     ├── +error.svelte           # 404 + runtime error page
     ├── +layout.svelte          # navigation + footer + WhatsApp button
     ├── +page.svelte            # home
-    ├── about/                  # one folder per public page
-    ├── certifications/
-    ├── contact/
-    ├── customization/
-    ├── policies/
-    └── products/
+    ├── about/                  # agency story, German core team, partner network
+    ├── apparel/                # 9 apparel categories (jerseys, hoodies, tracksuits, …)
+    ├── contact/                # contact form + info panel
+    ├── partners/               # 4 partner countries + 4 quality certifications
+    ├── policies/               # MOQ table + lead-time table + shipping options
+    └── services/               # 6 agency services + 4-step process
 ```
 
 **Documentation**
@@ -75,13 +84,13 @@ src/
 
 ### Switch the site's language
 
-The active language is locked in at build time. To switch from English
-to German (or vice versa):
+The active language is locked in at build time. To switch from German
+(the default) to English (or vice versa):
 
 1. Open `src/lib/site.config.ts`.
 2. Change the `LOCALE` constant:
    ```ts
-   export const LOCALE: Locale = 'de'; // was 'en'
+   export const LOCALE: Locale = 'en'; // was 'de'
    ```
 3. The static HTML shell in `src/app.html` carries a `<html lang="…">`
    attribute as the initial value — the root layout's `$effect` updates
@@ -89,88 +98,82 @@ to German (or vice versa):
    in JS-enabled browsers. Keep them in sync for the no-JS fallback.
 4. Rebuild: `npm run build`.
 
-> If the German page copy in `src/lib/content/de.ts` is out of date,
-> edit that file directly. Both `en.ts` and `de.ts` must satisfy the
+> If the other locale's page copy in `src/lib/content/{en,de}.ts` is
+> out of date, edit that file directly. Both files must satisfy the
 > `SiteContent` type in `src/lib/types.ts`.
 
-#### Where German content lives
+#### Where the two locales live
 
 There are **two content layers**, and both must be kept in sync:
 
 | Layer | Files | Holds |
 |---|---|---|
-| UI strings | `src/lib/content/{en,de}.ts` | Navigation, hero copy, footer, form labels, validation messages, page subtitles, the "USPs"… |
-| CMS-style data | `src/lib/data/*.json` | Products, customizations, certifications, about sections, policies, testimonials |
+| UI strings | `src/lib/content/{en,de}.ts` | Navigation, hero copy, footer, form labels, validation messages, page subtitles, the 5 USPs… |
+| CMS-style data | `src/lib/data/*.json` | Apparel types, services, partner countries, certifications, about sections, policies, testimonials |
 
 For the **data layer**, every user-facing field can carry an optional
 `*De` sibling (`name` + `nameDe`, `description` + `descriptionDe`, …).
 When `LOCALE === 'de'`, the data loader in `src/lib/data/index.ts` swaps
 the base field for its `*De` sibling. Component code keeps reading
-`product.name`, `cat.label`, `cert.description` — the swap is invisible.
+`apparel.name`, `country.description`, `service.title` — the swap is
+invisible.
 
 For the full reference (the `*De` field map per file, the
 `localizeRow` / `localizeList` / `localizePolicies` helpers, the
 policy-table row-label lookup, and how to add a new bilingual entity),
 see **[`TRANSLATIONS.md`](./TRANSLATIONS.md)**.
 
-### Add a new product
+### Add a new apparel category
 
-1. Open `src/lib/data/products.json`.
-2. Add a new object to the array. Use the same shape as the existing
-   entries. Include `*De` fields if you want the German build to show
-   translated text — if you leave them out, the loader falls back to
-   the English base value:
+1. Open `src/lib/data/apparel-types.json`.
+2. Add a new object to the array, using the existing entries as a
+   template. Include `*De` fields for the German build (or leave them
+   out — the loader falls back to the English base value):
    ```json
    {
-     "id": "p-jersey-basketball",
-     "name": "Basketball Jersey",
-     "nameDe": "Basketballtrikot",
-     "category": "jerseys",
-     "description": "Lightweight basketball jersey with breathable mesh.",
-     "descriptionDe": "Leichtes Basketballtrikot mit atmungsaktivem Mesh.",
-     "images": ["https://example.com/your-image.jpg"],
-     "fabric": "100% polyester mesh, 140 gsm",
-     "fabricDe": "100 % Polyester-Mesh, 140 g/m²",
-     "printingMethods": ["Sublimation", "Screen Print"],
-     "printingMethodsDe": ["Sublimation", "Siebdruck"],
-     "features": ["Breathable mesh", "Reinforced stitching"],
-     "featuresDe": ["Atmungsaktives Mesh", "Verstärkte Nähte"],
+     "id": "at-padel",
+     "value": "padel",
+     "name": "Padel Apparel",
+     "nameDe": "Padel-Bekleidung",
+     "description": "Performance padel wear for the fast-growing racket sport.",
+     "descriptionDe": "Performance-Bekleidung für den wachsenden Racketsport Padel.",
+     "image": "https://images.unsplash.com/photo-1599582909646-2e8dd4a9c0d6?w=800",
+     "examples": ["Padel tees", "Skorts", "Polos"],
+     "examplesDe": ["Padel-Shirts", "Skorts", "Polos"],
+     "features": ["Quick-dry", "4-way stretch"],
+     "featuresDe": ["Schnelltrocknend", "4-Wege-Stretch"],
+     "order": 10,
      "isActive": true
    }
    ```
-   The `category` value must match a `value` from
-   `product-categories.json` (e.g. `jerseys`, `shorts`, `shirts`).
-3. Save the file. The products page and home featured-products section
+3. Save the file. The apparel page and home featured-apparel section
    update automatically on next build.
-4. If the image URL is wrong, broken products show a placeholder via
-   `ProductCard.svelte`.
-5. If you're adding a brand-new `category` value, also add it to
-   `product-categories.json` (with `labelDe`) and to **both**
-   `t.contact.productOptions` maps in `en.ts` / `de.ts` — the
-   contact form's product dropdown reads from there.
+4. If you want this category to appear in the **policies MOQ table**,
+   also add a matching entry under `data` (and `dataDe`) in
+   `src/lib/data/policies.json` — the `value` field from your new
+   apparel row must match the MOQ row key.
 
-To **hide** a product without deleting it, set `"isActive": false` —
-it will be filtered out of the site.
+To **hide** an apparel category without deleting it, set
+`"isActive": false` — it will be filtered out of the site.
 
-### Add a new product category
+### Add a new service
 
-Categories are driven by `src/lib/data/product-categories.json`. To add
-one, add a row (with `labelDe` for the German build) and add the
-matching entry to **both** `t.contact.productOptions` in
-`src/lib/content/en.ts` and `de.ts`:
+1. Open `src/lib/data/services.json`.
+2. Add a new object with a `value`, `title`, `titleDe`, `description`,
+   `descriptionDe`, a lucide icon name in the `icon` field (e.g.
+   `Scissors`, `Tag`, `Truck`), and a `highlights` / `highlightsDe`
+   array.
+3. The services page and home services-overview section pick it up on
+   the next build.
 
-```jsonc
-// product-categories.json
-{ "id": "c-hoodies", "value": "hoodies", "label": "Hoodies", "labelDe": "Hoodies", "order": 7, "isActive": true }
-```
+### Add a new partner country
 
-```ts
-// src/lib/content/en.ts (and de.ts, with the German label)
-productOptions: {
-  // ...existing
-  hoodies: 'Hoodies',
-},
-```
+1. Open `src/lib/data/partner-countries.json`.
+2. Add a new object with `name` / `nameDe`, an emoji flag in the
+   `flag` field, `description` / `descriptionDe`, and a `strengths` /
+   `strengthsDe` array.
+3. The home partner-countries section and `/partners` page pick it up
+   on the next build.
 
 ### Change contact details (email, phone, address, socials)
 
@@ -180,10 +183,10 @@ panel, WhatsApp button) reads from it.
 
 ```ts
 export const CONTACT = {
-  email: 'info@oemwears.com',
-  phone: '+1 (234) 567-890',
-  address: 'Manufacturing District, CN',
-  whatsappNumber: '1234567890',   // digits only, no spaces or +
+  email: 'info@sportbekleidungsagentur.de',
+  phone: '+49 30 12345678',
+  address: 'Germany',
+  whatsappNumber: '493012345678',   // digits only, no spaces or +
   hours: 'Mo - Fr: 9:00 - 18:00\nSa: 9:00 - 13:00',
   facebookUrl: 'https://facebook.com',
   instagramUrl: 'https://instagram.com',
@@ -257,12 +260,12 @@ build.
 
 1. `npm run check` — must be 0 errors / 0 warnings.
 2. `npm run build` — must succeed.
-3. `npm run preview` and walk through every page (`/`, `/products`,
-   `/customization`, `/policies`, `/certifications`, `/about`,
-   `/contact`) looking for any English leaks. The contact form's
-   product dropdown, the policies table row labels, the certifications
-   descriptions, and the about-page section bodies are the most likely
-   places for missing translations.
+3. `npm run preview` and walk through every page (`/`, `/apparel`,
+   `/services`, `/about`, `/partners`, `/policies`, `/contact`) looking
+   for any English leaks. The contact form's service dropdown, the
+   policies table row labels, the partner country descriptions, and the
+   about-page section bodies are the most likely places for missing
+   translations.
 
 ## Troubleshooting
 
@@ -282,7 +285,7 @@ to match. The matching `*De` fields are localized by
 — so a missing `descriptionDe` silently falls back to the English
 `description`. To audit the German build, open the built bundle and
 search for English strings (`Mindestbestellmengen`/`Minimum Order`,
-`Unsere Fabrik`/`Our Factory`, etc.), or run the build with
+`Unsere Agentur`/`Our Agency`, etc.), or run the build with
 `LOCALE = 'de'` and walk the site visually. The full convention is
 documented in [`TRANSLATIONS.md`](./TRANSLATIONS.md).
 
@@ -292,6 +295,12 @@ hasn't been deleted in Discord. Open the browser's Network tab and
 look for a `POST` to the webhook — a non-2xx response means the
 webhook is bad.
 
+**Lucide icon in a service row doesn't render.** The `icon` field in
+`services.json` is a string name of a lucide-svelte export. Make sure
+the corresponding icon is also imported in the `iconMap` object in
+`src/routes/services/+page.svelte` — the page maps the string to the
+component at runtime.
+
 ## License
 
-Internal — OEMWears.
+Internal — Sportbekleidungsagentur.
