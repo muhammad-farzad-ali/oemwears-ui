@@ -114,7 +114,7 @@ export interface AboutStat {
   value: string;
   color: 'primary' | 'violet' | 'emerald' | 'accent';
   /** Key into `t.about.stats` (yearsExperience, teamMembers, etc.). */
-  statKey: 'yearsExperience' | 'teamMembers' | 'countriesServed' | 'happyClients';
+  statKey: 'yearsExperience' | 'partnerCountries' | 'brandsServed' | 'productionPartners';
   order: number;
   isActive: boolean;
 }
