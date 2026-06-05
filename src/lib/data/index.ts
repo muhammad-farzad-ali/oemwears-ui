@@ -1,10 +1,10 @@
 /**
- * Static data for the OEMWears site.
+ * Static data for the Sportbekleidungsagentur site.
  *
  * Each row in the JSON files may carry a `*De` sibling (e.g. `name` + `nameDe`).
  * When `LOCALE === 'de'`, the loader merges those German overrides into the
- * base fields so component code keeps reading `product.name`, `cat.label`,
- * `cert.description`, etc. unchanged. No runtime locale switching: the
+ * base fields so component code keeps reading `apparel.name`, `service.title`,
+ * `country.description`, etc. unchanged. No runtime locale switching: the
  * `LOCALE` constant in `src/lib/site.config.ts` is baked in at build time.
  *
  * Edit the JSON files in this folder to add/remove content. No server or
@@ -14,20 +14,20 @@
 import type {
   AboutSection,
   AboutStat,
+  ApparelType,
   Certification,
-  Customization,
   HomeHero,
+  PartnerCountry,
   Policy,
-  Product,
-  ProductCategory,
+  Service,
   Testimonial
 } from '../types';
 
 import { LOCALE } from '../site.config';
 
-import productsRaw from './products.json';
-import categoriesRaw from './product-categories.json';
-import customizationsRaw from './customizations.json';
+import apparelTypesRaw from './apparel-types.json';
+import servicesRaw from './services.json';
+import partnerCountriesRaw from './partner-countries.json';
 import certificationsRaw from './certifications.json';
 import aboutSectionsRaw from './about-sections.json';
 import aboutStatsRaw from './about-stats.json';
@@ -46,21 +46,31 @@ function active<T extends { isActive?: boolean }>(rows: readonly T[]): T[] {
  */
 type FieldMap = Record<string, string | null>;
 
-const PRODUCT_MAP: FieldMap = {
+const APPAREL_MAP: FieldMap = {
   name: 'nameDe',
   description: 'descriptionDe',
-  fabric: 'fabricDe',
-  printingMethods: 'printingMethodsDe',
-  features: 'featuresDe'
+  features: 'featuresDe',
+  examples: 'examplesDe'
 };
 
-const CATEGORY_MAP: FieldMap = { label: 'labelDe' };
-const CUSTOMIZATION_MAP: FieldMap = { title: 'titleDe', description: 'descriptionDe' };
+const SERVICE_MAP: FieldMap = {
+  title: 'titleDe',
+  description: 'descriptionDe',
+  highlights: 'highlightsDe'
+};
+
+const COUNTRY_MAP: FieldMap = {
+  name: 'nameDe',
+  description: 'descriptionDe',
+  strengths: 'strengthsDe'
+};
+
 const CERTIFICATION_MAP: FieldMap = {
   name: 'nameDe',
   issuer: 'issuerDe',
   description: 'descriptionDe'
 };
+
 const ABOUT_MAP: FieldMap = { title: 'titleDe', content: 'contentDe' };
 const TESTIMONIAL_MAP: FieldMap = {
   author: 'authorDe',
@@ -122,28 +132,36 @@ function localizePolicies(rows: readonly Policy[]): Policy[] {
   });
 }
 
-export const products: Product[] = active(
-  localizeList(productsRaw as unknown as Product[], PRODUCT_MAP)
-);
-export const productCategories: ProductCategory[] = active(
-  localizeList(categoriesRaw as unknown as ProductCategory[], CATEGORY_MAP)
+export const apparelTypes: ApparelType[] = active(
+  localizeList(apparelTypesRaw as unknown as ApparelType[], APPAREL_MAP)
 ).sort((a, b) => a.order - b.order);
-export const customizations: Customization[] = active(
-  localizeList(customizationsRaw as unknown as Customization[], CUSTOMIZATION_MAP)
+
+export const services: Service[] = active(
+  localizeList(servicesRaw as unknown as Service[], SERVICE_MAP)
 ).sort((a, b) => a.order - b.order);
+
+export const partnerCountries: PartnerCountry[] = active(
+  localizeList(partnerCountriesRaw as unknown as PartnerCountry[], COUNTRY_MAP)
+).sort((a, b) => a.order - b.order);
+
 export const certifications: Certification[] = active(
   localizeList(certificationsRaw as unknown as Certification[], CERTIFICATION_MAP)
 );
+
 export const aboutSections: AboutSection[] = active(
   localizeList(aboutSectionsRaw as unknown as AboutSection[], ABOUT_MAP)
 ).sort((a, b) => a.order - b.order);
+
 export const aboutStats: AboutStat[] = active(
   aboutStatsRaw as AboutStat[]
 ).sort((a, b) => a.order - b.order);
+
 export const policies: Policy[] = active(
   localizePolicies(policiesRaw as unknown as Policy[])
 ).sort((a, b) => a.order - b.order);
+
 export const testimonials: Testimonial[] = active(
   localizeList(testimonialsRaw as unknown as Testimonial[], TESTIMONIAL_MAP)
 );
+
 export const homeHero: HomeHero = homeHeroRaw as HomeHero;
