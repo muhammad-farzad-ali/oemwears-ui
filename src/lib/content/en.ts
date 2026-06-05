@@ -169,6 +169,7 @@ const en: SiteContent = {
     emptyState: "No certifications are currently listed."
   },
   policies: {
+    badge: "MOQ & Lead Times",
     title: "MOQ & Lead Times",
     subtitle:
       "Transparent information on minimum order quantities and typical project lead times for our agency projects.",

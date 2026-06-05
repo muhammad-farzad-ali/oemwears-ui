@@ -170,6 +170,7 @@ const de: SiteContent = {
     emptyState: 'Derzeit sind keine Zertifizierungen aufgeführt.'
   },
   policies: {
+    badge: 'MOQ & Lieferzeiten',
     title: 'MOQ & Lieferzeiten',
     subtitle:
       'Transparente Informationen zu Mindestbestellmengen und typischen Projektlaufzeiten für unsere Agenturprojekte.',

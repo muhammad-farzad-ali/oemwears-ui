@@ -239,6 +239,7 @@ export interface SiteContent {
     emptyState: string;
   };
   policies: {
+    badge: string;
     title: string;
     subtitle: string;
     moq: {
