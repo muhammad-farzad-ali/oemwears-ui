@@ -3,7 +3,7 @@
   import { t } from '$lib/content';
   import { CONTACT } from '$lib/site.config';
 
-  const url = `https://api.whatsapp.com/send?phone=${CONTACT.whatsappNumber}&text=%22Hello%20OEMWEARS%22`;
+  const url = `https://api.whatsapp.com/send?phone=${CONTACT.whatsappNumber}&text=%22Guten%20Tag%22`;
 </script>
 
 <a

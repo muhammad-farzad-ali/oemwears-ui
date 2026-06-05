@@ -13,18 +13,18 @@ export const LOCALE: Locale = "de";
 
 export const BRAND = {
   name: "Sportbekleidungsagentur",
-  domain: "https://example.com"
+  domain: "https://sportbekleidungsagentur.de",
 } as const;
 
 export const CONTACT = {
   email: "info@sportbekleidungsagentur.de",
-  phone: "+49 30 12345678",
-  address: "Germany",
-  whatsappNumber: "493012345678",
+  phone: "+49 000000000",
+  address: "Weimar, Thüringen, Deutschland",
+  whatsappNumber: "4917616628396",
   hours: "Mo - Fr: 9:00 - 18:00\nSa: 9:00 - 13:00",
   facebookUrl: "https://facebook.com",
   instagramUrl: "https://instagram.com",
-  linkedinUrl: "https://linkedin.com"
+  linkedinUrl: "https://linkedin.com",
 } as const;
 
 /**
