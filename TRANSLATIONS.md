@@ -19,8 +19,8 @@ The rest of this document explains where the German content lives, the
 
 | Layer | File pattern | Holds |
 |---|---|---|
-| **UI strings** (layout, copy, button labels, form messages) | `src/lib/content/{en,de}.ts` | All chrome — navigation, hero, footer, form labels, validation messages, page subtitles, the "USPs", etc. |
-| **CMS-style data** (per-entity records: products, customizations, certifications, about sections, policies, testimonials, home hero) | `src/lib/data/*.json` | User-editable content that maps 1-to-1 to a Prisma model. |
+| **UI strings** (layout, copy, button labels, form messages) | `src/lib/content/{en,de}.ts` | All chrome — navigation, hero, footer, form labels, validation messages, page subtitles, the 5 USPs, etc. |
+| **CMS-style data** (per-entity records: apparel types, services, partner countries, certifications, about sections, policies, testimonials, home hero) | `src/lib/data/*.json` | User-editable content that is loaded as static JSON. |
 
 The **`t` export** (`import { t } from '$lib/content'`) picks the right UI
 strings file based on `LOCALE`. Component code reads
@@ -28,8 +28,8 @@ strings file based on `LOCALE`. Component code reads
 
 The **data loader** (`src/lib/data/index.ts`) reads the JSON files and,
 when `LOCALE === 'de'`, merges the `*De` sibling fields into the base
-fields. Components keep reading `product.name`, `cat.label`,
-`cert.description` — the swap is invisible to them.
+fields. Components keep reading `apparel.name`, `country.description`,
+`service.title` — the swap is invisible to them.
 
 ---
 
@@ -43,25 +43,35 @@ sibling is non-empty** — so adding a `*De` is opt-in per field.
 ### Examples
 
 ```jsonc
-// products.json — single product
+// apparel-types.json — single apparel category
 {
-  "id": "p-football-jersey",
-  "name": "Professional Football Jersey",
-  "nameDe": "Professionelles Fußballtrikot",
-  "description": "High-performance football jersey with moisture-wicking fabric.",
-  "descriptionDe": "Hochleistungs-Fußballtrikot mit feuchtigkeitsableitendem Gewebe.",
-  "fabric": "100% Polyester",
-  "fabricDe": "100 % Polyester",
-  "printingMethods": ["Sublimation", "Screen Printing", "Embroidery"],
-  "printingMethodsDe": ["Sublimation", "Siebdruck", "Stickerei"],
-  "features": ["Breathable", "Quick Dry", "UV Protection"],
-  "featuresDe": ["Atmungsaktiv", "Schnelltrocknend", "UV-Schutz"]
+  "id": "at-hoodies",
+  "value": "hoodies",
+  "name": "Hoodies",
+  "nameDe": "Hoodies",
+  "description": "Heavyweight and midweight hoodies for training, leisure, and travel.",
+  "descriptionDe": "Schwere und mittelschwere Hoodies für Training, Freizeit und Reisen.",
+  "image": "https://images.unsplash.com/photo-1556821840-3a63f95609a7?w=800",
+  "examples": ["Pullover hoodies", "Zip hoodies"],
+  "examplesDe": ["Pullover-Hoodies", "Zip-Hoodies"],
+  "features": ["Brushed inside", "YKK zippers"],
+  "featuresDe": ["Innen angeraut", "YKK-Reißverschlüsse"]
 }
 ```
 
 ```jsonc
-// product-categories.json
-{ "id": "c-jerseys", "value": "jerseys", "label": "Jerseys", "labelDe": "Trikots" }
+// services.json — single service
+{
+  "id": "s-custom-production",
+  "value": "custom-production",
+  "title": "Custom Sportswear Production",
+  "titleDe": "Individuelle Sportbekleidungsproduktion",
+  "description": "Full custom manufacturing of sportswear, from the first sketch to the delivered goods.",
+  "descriptionDe": "Maßgeschneiderte Fertigung von Sportbekleidung — vom ersten Entwurf bis zur gelieferten Ware.",
+  "icon": "Scissors",
+  "highlights": ["Tech-pack support", "Sublimation, cut & sew, and knit"],
+  "highlightsDe": ["Tech-Pack-Unterstützung", "Sublimation, Cut & Sew und Maschenware"]
+}
 ```
 
 ```jsonc
@@ -73,10 +83,10 @@ sibling is non-empty** — so adding a `*De` is opt-in per field.
   "description": "...",
   "descriptionDe": "...",
   "data": {
-    "jerseys": { "quantity": "50 pcs", "note": "Per design/colorway" }
+    "gym-wear": { "quantity": "50 pcs", "note": "Per design/colorway" }
   },
   "dataDe": {
-    "jerseys": { "quantityDe": "50 Stk.", "noteDe": "Pro Design / Farbvariante" }
+    "gym-wear": { "quantityDe": "50 Stk.", "noteDe": "Pro Design / Farbvariante" }
   }
 }
 ```
@@ -85,37 +95,75 @@ sibling is non-empty** — so adding a `*De` is opt-in per field.
 
 | File | Bilingual fields | Pass-through (no `*De`) |
 |---|---|---|
-| `products.json` | `name`, `description`, `fabric`, `printingMethods[]`, `features[]` | `id`, `category`, `images[]`, `isActive` |
-| `product-categories.json` | `label` | `id`, `value`, `order`, `isActive` |
-| `customizations.json` | `title`, `description` | `id`, `type`, `options`, `images[]`, `order`, `isActive` |
+| `apparel-types.json` | `name`, `description`, `examples[]`, `features[]` | `id`, `value`, `image`, `order`, `isActive` |
+| `services.json` | `title`, `description`, `highlights[]` | `id`, `value`, `icon`, `order`, `isActive` |
+| `partner-countries.json` | `name`, `description`, `strengths[]` | `id`, `value`, `flag`, `order`, `isActive` |
+| `certifications.json` | `name`, `issuer`, `description` | `id`, `validUntil`, `isActive` |
 | `about-sections.json` | `title`, `content` | `id`, `section`, `images[]`, `videos[]`, `order`, `isActive` |
+| `about-stats.json` | n/a — `value` is a number/short string and renders identically | `id`, `value`, `color`, `statKey`, `order`, `isActive` |
 | `policies.json` | `description`, `data[*].quantity|time|note` | `id`, `type`, `title`, `order`, `isActive` |
 | `testimonials.json` | `author`, `company`, `content` | `id`, `rating`, `image`, `blurAuthor`, `blurCompany`, `isActive` |
-| `certifications.json` | `name`, `issuer`, `description` | `id`, `badge`, `validUntil`, `isActive` |
 | `home-hero.json` | n/a — only carries images & link | `section`, `images[]`, `fallbackImage`, `ctaLink` |
 
 > We translate every user-facing field, including certification names
-> (`SEDEX (SMETA)`, `GOTS-zertifiziert`) and testimonial authors
-> (`John Smith` → `John Smith`). The originals are kept as the base
-> value so the English build is unchanged.
+> (`SEDEX (SMETA)`, `GOTS-zertifiziert`) and testimonial authors.
+> The originals are kept as the base value so the English build is
+> unchanged.
+
+---
+
+## The data loader's field maps
+
+The loader's localization is driven by a small per-entity field map
+in `src/lib/data/index.ts`. Each map lists the base field → its `*De`
+sibling, with `null` to mark a field as "do not translate" (none
+currently use this — it's there for opt-out). Adding a new bilingual
+field is a one-line change to the appropriate map.
+
+```ts
+// src/lib/data/index.ts
+const APPAREL_MAP: FieldMap = {
+  name: 'nameDe',
+  description: 'descriptionDe',
+  features: 'featuresDe',
+  examples: 'examplesDe'
+};
+
+const SERVICE_MAP: FieldMap = {
+  title: 'titleDe',
+  description: 'descriptionDe',
+  highlights: 'highlightsDe'
+};
+
+const COUNTRY_MAP: FieldMap = {
+  name: 'nameDe',
+  description: 'descriptionDe',
+  strengths: 'strengthsDe'
+};
+// …and one for certifications, about sections, testimonials, policies.
+```
 
 ---
 
 ## Policy table row labels
 
 The MOQ and lead-time tables on `/policies` are driven by the data
-files' `data` map. The map's keys (`jerseys`, `sample`, `production`,
+files' `data` map. The map's keys (`gym-wear`, `sampling`, `production`,
 …) are not translated directly — they are mapped to display labels
-in the i18n content file:
+in the i18n content file or the apparel-types data file:
 
-- `jerseys / shorts / shirts / socks / sets` →
-  `t.contact.productOptions.{jerseys,shorts,shirts,socks,sets}`
-- `sample / production / shipping` →
-  `t.policies.leadTime.stageLabels.{sample,production,shipping}`
+- `gym-wear / teamwear / football-kits / compression-wear / hoodies /
+  tracksuits / running-apparel / cycling-wear / yoga-fitness` →
+  `apparelTypes.find(a => a.value === key).name` (resolved
+  dynamically at render time from `apparel-types.json`)
+- `sampling / production / shipping` →
+  `t.policies.leadTime.stageLabels.{sampling,production,shipping}`
 
-Both en and de have these labels defined. To add a new product type
-or lead-time stage, add the key to `policies.json`'s `data` and `dataDe`
-maps, then add the matching label to **both** `en.ts` and `de.ts`.
+Both en and de have the stage labels defined. To add a new apparel
+type or lead-time stage, add the key to `policies.json`'s `data` and
+`dataDe` maps, and — for apparel types — also add the matching row to
+`apparel-types.json` (the MOQ table will pick the label up
+automatically from the data file).
 
 ---
 
@@ -124,11 +172,14 @@ maps, then add the matching label to **both** `en.ts` and `de.ts`.
 1. **Add the row** to the relevant JSON file with all `*De` fields.
    Leave a `*De` field out if the German text is the same as the English
    one — the loader will keep the base value.
-2. **Add matching i18n keys** (if the row is referenced by a key, e.g.
-   a new product category needs a `t.contact.productOptions.<value>`
-   entry) to **both** `src/lib/content/en.ts` and `src/lib/content/de.ts`.
-3. **Run `npm run check`** — type errors flag mismatched keys.
-4. **Run `npm run build`** with each locale and visually confirm.
+2. **Add the matching field to the loader's field map** if the new
+   field doesn't already have a `*De` sibling. See "The data loader's
+   field maps" above.
+3. **Add matching i18n keys** (if the row is referenced by a key, e.g.
+   a new apparel category needs a corresponding `policies.json` MOQ
+   row key) to the relevant files.
+4. **Run `npm run check`** — type errors flag mismatched keys.
+5. **Run `npm run build`** with each locale and visually confirm.
 
 ---
 
@@ -143,13 +194,13 @@ curl -s http://localhost:4173/ | grep -oE 'lang="[a-z]+"'   # lang="de"
 ```
 
 Then open every page in a browser and check for any English leaks:
-- `/` — hero (no English), featured products (German names), testimonials (German quotes)
-- `/products` — category chips + section headings in German; product cards in German
-- `/customization` — process steps + per-type tabs in German
-- `/policies` — table headers in German; row labels in German; "50 Stk." units
-- `/certifications` — descriptions in German
-- `/about` — section titles ("Unsere Fabrik" etc.) and bodies in German
-- `/contact` — labels in German, product dropdown in German
+- `/` — hero in German, partner country descriptions in German, USPs in German, featured apparel in German, testimonials in German
+- `/apparel` — page header in German; category card names, descriptions, examples, and capabilities in German
+- `/services` — 6 service cards in German; 4-step process in German; CTA in German
+- `/policies` — table headers in German; row labels in German (from `apparel-types.json`); "50 Stk." units
+- `/partners` — country cards + certification descriptions in German
+- `/about` — section titles ("Unsere Agentur" etc.) and bodies in German
+- `/contact` — labels in German, service dropdown in German
 
 Switch `LOCALE` to `"en"`, rebuild, and confirm the symmetric case.
 
