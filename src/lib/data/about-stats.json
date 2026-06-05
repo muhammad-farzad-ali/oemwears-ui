@@ -1,6 +1,6 @@
 [
   { "id": "years-experience", "value": "10+", "color": "primary", "statKey": "yearsExperience", "order": 1, "isActive": true },
-  { "id": "team-members", "value": "200+", "color": "violet", "statKey": "teamMembers", "order": 2, "isActive": true },
-  { "id": "countries-served", "value": "30+", "color": "emerald", "statKey": "countriesServed", "order": 3, "isActive": true },
-  { "id": "happy-clients", "value": "500+", "color": "accent", "statKey": "happyClients", "order": 4, "isActive": true }
+  { "id": "partner-countries", "value": "4", "color": "violet", "statKey": "partnerCountries", "order": 2, "isActive": true },
+  { "id": "brands-served", "value": "100+", "color": "emerald", "statKey": "brandsServed", "order": 3, "isActive": true },
+  { "id": "production-partners", "value": "4", "color": "accent", "statKey": "productionPartners", "order": 4, "isActive": true }
 ]
