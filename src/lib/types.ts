@@ -151,7 +151,6 @@ export interface SiteContent {
     subtitle: string;
     description: string;
     ctaPrimary: string;
-    ctaSecondary: string;
     fallbackAlt: string;
   };
   usps: {

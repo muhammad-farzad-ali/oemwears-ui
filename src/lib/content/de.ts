@@ -23,7 +23,6 @@ const de: SiteContent = {
     description:
       'Wir unterstützen Marken, Fitnessstudios, Sportvereine, Startups, Influencer und E-Commerce-Unternehmen dabei, individuelle Sportbekleidung zu entwickeln und zu fertigen — über ein sorgfältig ausgewähltes Netzwerk von Produktionspartnern in Pakistan, der Türkei, Portugal und China, durchgängig aus Deutschland koordiniert.',
     ctaPrimary: 'Projekt starten',
-    ctaSecondary: 'Leistungen entdecken',
     fallbackAlt: 'Individuelle Sportbekleidungsproduktion'
   },
   usps: {

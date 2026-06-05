@@ -48,13 +48,6 @@
           <Button href="/contact" class="shadow-2xl shadow-primary/40 hover:shadow-primary/60">
             {t.hero.ctaPrimary}
           </Button>
-          <Button
-            href="/products"
-            variant="outline"
-            class="bg-white/5 border-white/20 text-white hover:bg-white/10 hover:border-white/30 backdrop-blur-sm"
-          >
-            {t.hero.ctaSecondary}
-          </Button>
         </div>
       </div>
       <div class="relative w-full">

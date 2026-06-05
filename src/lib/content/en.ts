@@ -23,7 +23,6 @@ const en: SiteContent = {
     description:
       "We help brands, gyms, sports clubs, startups, influencers, and ecommerce companies develop and manufacture custom sportswear through a carefully selected network of production partners in Pakistan, Turkey, Portugal, and China — managed end-to-end from Germany.",
     ctaPrimary: "Start your project",
-    ctaSecondary: "Explore services",
     fallbackAlt: "Custom sportswear production"
   },
   usps: {
