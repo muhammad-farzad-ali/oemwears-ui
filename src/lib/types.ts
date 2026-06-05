@@ -138,13 +138,12 @@ export interface SiteContent {
   brand: { name: string; tagline: string; description: string };
   nav: {
     home: string;
-    products: string;
-    customization: string;
+    apparel: string;
+    services: string;
     about: string;
-    certifications: string;
+    partners: string;
     policies: string;
     contact: string;
-    admin: string;
     getQuote: string;
   };
   hero: {
@@ -156,67 +155,43 @@ export interface SiteContent {
     fallbackAlt: string;
   };
   usps: {
+    germanTrust: { title: string; description: string };
+    sportswearFocus: { title: string; description: string };
+    endToEnd: { title: string; description: string };
     lowMoq: { title: string; description: string };
-    fastTurnaround: { title: string; description: string };
-    qualityAssured: { title: string; description: string };
-    fullCustomization: { title: string; description: string };
+    reliableNetwork: { title: string; description: string };
   };
-  featuredProducts: {
+  partnerCountries: {
     badge: string;
     title: string;
     subtitle: string;
-    viewDetails: string;
+  };
+  featuredApparel: {
+    badge: string;
+    title: string;
+    subtitle: string;
     viewAll: string;
   };
-  products: {
+  apparelTypes: {
     badge: string;
     title: string;
     subtitle: string;
-    fabric: string;
-    printingMethods: string;
-    features: string;
+    featuresLabel: string;
+    examplesLabel: string;
     emptyState: string;
     ctaTitle: string;
     ctaSubtitle: string;
     ctaButton: string;
   };
-  about: {
+  servicesOverview: {
     badge: string;
     title: string;
     subtitle: string;
-    stats: {
-      yearsExperience: string;
-      teamMembers: string;
-      countriesServed: string;
-      happyClients: string;
-    };
-    qualityCommitment: {
-      title: string;
-      qualityMaterials: { title: string; description: string };
-      rigorousTesting: { title: string; description: string };
-      ethicalProduction: { title: string; description: string };
-    };
-    fallback: {
-      factoryTitle: string;
-      factoryContent: string;
-      factoryAlt: string;
-      teamTitle: string;
-      teamContent: string;
-      teamAlt: string;
-    };
   };
-  certifications: {
+  services: {
+    badge: string;
     title: string;
     subtitle: string;
-    issuedBy: string;
-    validUntil: string;
-    emptyState: string;
-  };
-  customization: {
-    title: string;
-    subtitle: string;
-    detailedGuide: string;
-    availableOptions: string;
     process: {
       title: string;
       step1: { title: string; description: string };
@@ -225,12 +200,43 @@ export interface SiteContent {
       step4: { title: string; description: string };
     };
     cta: { title: string; subtitle: string; button: string };
-    types: {
-      design: { title: string; description: string };
-      names: { title: string; description: string };
-      printing: { title: string; description: string };
-      sizing: { title: string; description: string };
+  };
+  about: {
+    badge: string;
+    title: string;
+    subtitle: string;
+    stats: {
+      yearsExperience: string;
+      partnerCountries: string;
+      brandsServed: string;
+      productionPartners: string;
     };
+    qualityCommitment: {
+      title: string;
+      vettedNetwork: { title: string; description: string };
+      onSiteInspections: { title: string; description: string };
+      ethicalStandards: { title: string; description: string };
+    };
+    fallback: {
+      agencyTitle: string;
+      agencyContent: string;
+      agencyAlt: string;
+      teamTitle: string;
+      teamContent: string;
+      teamAlt: string;
+    };
+  };
+  partners: {
+    badge: string;
+    title: string;
+    subtitle: string;
+    countriesTitle: string;
+    countriesSubtitle: string;
+    certificationsTitle: string;
+    certificationsSubtitle: string;
+    issuedBy: string;
+    validUntil: string;
+    emptyState: string;
   };
   policies: {
     title: string;
@@ -248,7 +254,7 @@ export interface SiteContent {
       timeline: string;
       emptyState: string;
       stageLabels: {
-        sample: string;
+        sampling: string;
         production: string;
         shipping: string;
       };
@@ -267,6 +273,7 @@ export interface SiteContent {
     contact: string;
     followUs: string;
     copyright: string;
+    tagline: string;
     emailLabel: string;
     phoneLabel: string;
     addressLabel: string;
@@ -291,14 +298,15 @@ export interface SiteContent {
     companyLabel: string;
     companyPlaceholder: string;
     phonePlaceholder: string;
-    productInterestLabel: string;
-    productPlaceholder: string;
-    productOptions: {
-      jerseys: string;
-      shorts: string;
-      shirts: string;
-      socks: string;
-      sets: string;
+    serviceInterestLabel: string;
+    servicePlaceholder: string;
+    serviceOptions: {
+      customProduction: string;
+      oemPrivateLabel: string;
+      productDevelopment: string;
+      productionManagement: string;
+      qualityControl: string;
+      logistics: string;
       other: string;
     };
     quantityLabel: string;
@@ -314,7 +322,7 @@ export interface SiteContent {
     validation: {
       nameRequired: string;
       emailInvalid: string;
-      productRequired: string;
+      serviceRequired: string;
       messageRequired: string;
     };
     errors: {
@@ -322,40 +330,12 @@ export interface SiteContent {
       genericError: string;
     };
   };
-  admin: {
-    title: string;
-    viewSite: string;
-    signOut: string;
-    nav: {
-      dashboard: string;
-      products: string;
-      customizations: string;
-      certifications: string;
-      policies: string;
-      about: string;
-      testimonials: string;
-      contacts: string;
-      settings: string;
-    };
-    actions: { add: string; edit: string; delete: string; view: string };
-    status: {
-      active: string;
-      inactive: string;
-      pending: string;
-      responded: string;
-      closed: string;
-    };
-    login: { title: string; description: string; username: string; password: string; submit: string };
-  };
   common: {
     loading: string;
     error: string;
     close: string;
     back: string;
     cancel: string;
-    save: string;
-    create: string;
-    update: string;
     emptyState: string;
     viewDetails: string;
     required: string;
