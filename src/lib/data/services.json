@@ -1,0 +1,128 @@
+[
+  {
+    "id": "s-custom-production",
+    "value": "custom-production",
+    "title": "Custom Sportswear Production",
+    "titleDe": "Individuelle Sportbekleidungsproduktion",
+    "description": "Full custom manufacturing of sportswear, from the first sketch to the delivered goods. We work with your designs, fabrics, and tech-packs — or build them with you from scratch.",
+    "descriptionDe": "Maßgeschneiderte Fertigung von Sportbekleidung — vom ersten Entwurf bis zur gelieferten Ware. Wir arbeiten mit Ihren Designs, Stoffen und Tech-Packs — oder entwickeln sie gemeinsam mit Ihnen von Grund auf.",
+    "icon": "Scissors",
+    "highlights": [
+      "Tech-pack support",
+      "Sublimation, cut & sew, and knit",
+      "Low MOQ from 50 pcs per design"
+    ],
+    "highlightsDe": [
+      "Tech-Pack-Unterstützung",
+      "Sublimation, Cut & Sew und Maschenware",
+      "Niedrige MOQ ab 50 Stk. pro Design"
+    ],
+    "order": 1,
+    "isActive": true
+  },
+  {
+    "id": "s-oem-private-label",
+    "value": "oem-private-label",
+    "title": "OEM / Private Label",
+    "titleDe": "OEM / Private Label",
+    "description": "Build your own sportswear brand. We produce your designs, add your labels, packaging, and tags — and ship under your name.",
+    "descriptionDe": "Bauen Sie Ihre eigene Sportbekleidungsmarke auf. Wir produzieren Ihre Designs, bringen Ihre Labels, Verpackungen und Tags an — und versenden unter Ihrem Namen.",
+    "icon": "Tag",
+    "highlights": [
+      "Custom labels & tags",
+      "Brand-specific packaging",
+      "Exclusive colorways & prints"
+    ],
+    "highlightsDe": [
+      "Eigene Labels & Tags",
+      "Markenspezifische Verpackung",
+      "Exklusive Farben & Drucke"
+    ],
+    "order": 2,
+    "isActive": true
+  },
+  {
+    "id": "s-product-development",
+    "value": "product-development",
+    "title": "Product Development",
+    "titleDe": "Produktentwicklung",
+    "description": "Support with fabric selection, fit optimization, and design implementation. We turn rough ideas into production-ready garments.",
+    "descriptionDe": "Unterstützung bei Stoffauswahl, Passform-Optimierung und Designumsetzung. Wir verwandeln grobe Ideen in produktionsreife Kleidungsstücke.",
+    "icon": "Lightbulb",
+    "highlights": [
+      "Fabric & trim sourcing",
+      "Fit & pattern development",
+      "Sample making & revisions"
+    ],
+    "highlightsDe": [
+      "Stoff- & Zutatenbeschaffung",
+      "Passform- & Schnittentwicklung",
+      "Musteranfertigung & -anpassung"
+    ],
+    "order": 3,
+    "isActive": true
+  },
+  {
+    "id": "s-production-management",
+    "value": "production-management",
+    "title": "Production Management",
+    "titleDe": "Produktionsmanagement",
+    "description": "We coordinate directly with our vetted partner factories — negotiations, timelines, samples, and progress updates. One contact, one language, one currency.",
+    "descriptionDe": "Wir koordinieren direkt mit unseren geprüften Partnerfabriken — Verhandlungen, Zeitpläne, Muster und Fortschrittsupdates. Ein Ansprechpartner, eine Sprache, eine Währung.",
+    "icon": "Workflow",
+    "highlights": [
+      "Direct factory communication",
+      "Negotiation & pricing",
+      "Production supervision"
+    ],
+    "highlightsDe": [
+      "Direkte Fabrik-Kommunikation",
+      "Verhandlung & Kalkulation",
+      "Produktionsüberwachung"
+    ],
+    "order": 4,
+    "isActive": true
+  },
+  {
+    "id": "s-quality-control",
+    "value": "quality-control",
+    "title": "Quality Control",
+    "titleDe": "Qualitätskontrolle",
+    "description": "Pre-shipment inspections, measurement verification, fabric testing, and print/stitch validation. We check every batch before it leaves the factory.",
+    "descriptionDe": "Prüfungen vor dem Versand, Maßprüfungen, Stofftests sowie Druck- und Nahtkontrollen. Wir prüfen jede Charge, bevor sie die Fabrik verlässt.",
+    "icon": "BadgeCheck",
+    "highlights": [
+      "Pre-shipment inspections",
+      "AQL measurement checks",
+      "Fabric & print validation"
+    ],
+    "highlightsDe": [
+      "Prüfungen vor dem Versand",
+      "AQL-Maßprüfungen",
+      "Stoff- & Druckvalidierung"
+    ],
+    "order": 5,
+    "isActive": true
+  },
+  {
+    "id": "s-logistics",
+    "value": "logistics",
+    "title": "Logistics & Import Coordination",
+    "titleDe": "Logistik & Importabwicklung",
+    "description": "Shipping coordination and customs documentation. We organize sea, air, or express freight and handle import paperwork to Germany and the EU.",
+    "descriptionDe": "Versandkoordination und Zollabwicklung. Wir organisieren See-, Luft- oder Expressfracht und kümmern uns um die Importpapiere nach Deutschland und in die EU.",
+    "icon": "Truck",
+    "highlights": [
+      "Sea, air & express freight",
+      "EU customs documentation",
+      "Door-to-door delivery"
+    ],
+    "highlightsDe": [
+      "See-, Luft- & Expressfracht",
+      "EU-Zolldokumente",
+      "Lieferung frei Haus"
+    ],
+    "order": 6,
+    "isActive": true
+  }
+]
