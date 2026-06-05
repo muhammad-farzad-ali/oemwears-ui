@@ -2,9 +2,9 @@
   import { t } from '$lib/content';
   import { pageTitle } from '$lib/utils/seo';
   import HeroSection from '$lib/components/home/HeroSection.svelte';
+  import PartnerCountriesSection from '$lib/components/home/PartnerCountriesSection.svelte';
   import UspsSection from '$lib/components/home/UspsSection.svelte';
-  import FeaturedProductsSection from '$lib/components/home/FeaturedProductsSection.svelte';
-  import CertificationsSection from '$lib/components/home/CertificationsSection.svelte';
+  import FeaturedApparelSection from '$lib/components/home/FeaturedApparelSection.svelte';
   import TestimonialsSection from '$lib/components/home/TestimonialsSection.svelte';
   import CtaSection from '$lib/components/home/CtaSection.svelte';
 </script>
@@ -16,9 +16,9 @@
 
 <div class="flex flex-col">
   <HeroSection />
+  <PartnerCountriesSection />
   <UspsSection />
-  <FeaturedProductsSection />
-  <CertificationsSection />
+  <FeaturedApparelSection />
   <TestimonialsSection />
   <CtaSection />
 </div>
