@@ -119,9 +119,9 @@
           <h2 class="text-3xl font-bold mb-6 flex items-center gap-3">
             <span class="w-10 h-1 rounded-full bg-gradient-to-r from-primary to-primary/50"
             ></span>
-            {t.about.fallback.factoryTitle}
+            {t.about.fallback.agencyTitle}
           </h2>
-          {#each t.about.fallback.factoryContent.split('\n\n') as paragraph, idx (idx)}
+          {#each t.about.fallback.agencyContent.split('\n\n') as paragraph, idx (idx)}
             <p class="text-muted-foreground mb-4 text-lg leading-relaxed">{paragraph}</p>
           {/each}
         </div>
@@ -130,7 +130,7 @@
         >
           <img
             src={PLACEHOLDER_IMAGES.factory}
-            alt={t.about.fallback.factoryAlt}
+            alt={t.about.fallback.agencyAlt}
             class="absolute inset-0 w-full h-full object-cover"
           />
         </div>
