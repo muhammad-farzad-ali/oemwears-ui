@@ -1,0 +1,44 @@
+[
+  {
+    "id": "po-moq",
+    "type": "moq",
+    "title": "Minimum Order Quantities",
+    "description": "Minimum order quantities vary by product type. Contact us for specific requirements.",
+    "descriptionDe": "Die Mindestbestellmengen variieren je nach Produkttyp. Kontaktieren Sie uns für konkrete Anforderungen.",
+    "data": {
+      "jerseys": { "quantity": "50 pcs", "note": "Per design/colorway" },
+      "shorts": { "quantity": "50 pcs", "note": "Per design/colorway" },
+      "shirts": { "quantity": "50 pcs", "note": "Per design/colorway" },
+      "socks": { "quantity": "100 pcs", "note": "Per design/colorway" },
+      "sets": { "quantity": "30 pcs", "note": "Per design/colorway" }
+    },
+    "dataDe": {
+      "jerseys": { "quantityDe": "50 Stk.", "noteDe": "Pro Design / Farbvariante" },
+      "shorts": { "quantityDe": "50 Stk.", "noteDe": "Pro Design / Farbvariante" },
+      "shirts": { "quantityDe": "50 Stk.", "noteDe": "Pro Design / Farbvariante" },
+      "socks": { "quantityDe": "100 Stk.", "noteDe": "Pro Design / Farbvariante" },
+      "sets": { "quantityDe": "30 Stk.", "noteDe": "Pro Design / Farbvariante" }
+    },
+    "order": 1,
+    "isActive": true
+  },
+  {
+    "id": "po-lead-time",
+    "type": "lead-time",
+    "title": "Production Lead Times",
+    "description": "Standard production times from sample approval to delivery.",
+    "descriptionDe": "Standard-Produktionszeiten von der Musterfreigabe bis zur Lieferung.",
+    "data": {
+      "sample": { "time": "7-10 days", "note": "Including design finalization" },
+      "production": { "time": "15-20 days", "note": "After sample approval" },
+      "shipping": { "time": "5-7 days", "note": "Express shipping" }
+    },
+    "dataDe": {
+      "sample": { "timeDe": "7–10 Tage", "noteDe": "Inklusive Designfinalisierung" },
+      "production": { "timeDe": "15–20 Tage", "noteDe": "Nach Musterfreigabe" },
+      "shipping": { "timeDe": "5–7 Tage", "noteDe": "Expressversand" }
+    },
+    "order": 2,
+    "isActive": true
+  }
+]

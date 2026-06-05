@@ -1,0 +1,46 @@
+[
+  {
+    "id": "ce-iso9001",
+    "name": "ISO 9001:2015",
+    "nameDe": "ISO 9001:2015",
+    "issuer": "SGS",
+    "issuerDe": "SGS",
+    "description": "Quality Management System certification ensuring consistent quality in our manufacturing processes.",
+    "descriptionDe": "Zertifizierung des Qualitätsmanagementsystems, die gleichbleibende Qualität in unseren Produktionsprozessen sicherstellt.",
+    "validUntil": "2026-12-31",
+    "isActive": true
+  },
+  {
+    "id": "ce-sedex",
+    "name": "SEDEX",
+    "nameDe": "SEDEX (SMETA)",
+    "issuer": "SEDEX",
+    "issuerDe": "SEDEX",
+    "description": "Ethical trading initiative certification demonstrating our commitment to fair labor practices.",
+    "descriptionDe": "Zertifizierung der Ethical-Trading-Initiative als Nachweis unseres Engagements für faire Arbeitsbedingungen.",
+    "validUntil": "2026-06-30",
+    "isActive": true
+  },
+  {
+    "id": "ce-oekotex",
+    "name": "OEKO-TEX Standard 100",
+    "nameDe": "OEKO-TEX Standard 100",
+    "issuer": "Hohenstein",
+    "issuerDe": "Hohenstein",
+    "description": "Safety certification for textiles tested for harmful substances.",
+    "descriptionDe": "Sicherheitszertifizierung für Textilien, die auf Schadstoffe geprüft wurden.",
+    "validUntil": "2025-12-31",
+    "isActive": true
+  },
+  {
+    "id": "ce-gots",
+    "name": "GOTS Certified",
+    "nameDe": "GOTS-zertifiziert",
+    "issuer": "Control Union",
+    "issuerDe": "Control Union",
+    "description": "Global Organic Textile Standard certification for organic fiber products.",
+    "descriptionDe": "Global Organic Textile Standard – Zertifizierung für Produkte aus Biofasern.",
+    "validUntil": "2025-09-30",
+    "isActive": true
+  }
+]

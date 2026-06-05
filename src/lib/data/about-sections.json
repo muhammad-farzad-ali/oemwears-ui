@@ -1,0 +1,38 @@
+[
+  {
+    "id": "ab-factory",
+    "section": "factory",
+    "title": "Our Factory",
+    "titleDe": "Unsere Fabrik",
+    "content": "Our state-of-the-art manufacturing facility spans over 10,000 square meters and is equipped with the latest machinery for cutting, sewing, and printing.\n\nWe maintain strict quality control standards at every stage of production.",
+    "contentDe": "Unsere hochmoderne Produktionsanlage erstreckt sich über mehr als 10.000 Quadratmeter und ist mit den neuesten Maschinen zum Schneiden, Nähen und Bedrucken ausgestattet.\n\nIn jeder Produktionsphase halten wir strenge Qualitätsstandards ein.",
+    "images": ["https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800"],
+    "videos": [],
+    "order": 1,
+    "isActive": true
+  },
+  {
+    "id": "ab-team",
+    "section": "team",
+    "title": "Our Team",
+    "titleDe": "Unser Team",
+    "content": "With over 200 skilled workers and a dedicated management team, we have the capacity and expertise to handle orders of any size.\n\nOur team includes experienced designers, pattern makers, and quality control specialists.",
+    "contentDe": "Mit über 200 qualifizierten Mitarbeitenden und einem engagierten Managementteam verfügen wir über die Kapazität und das Know-how, um Aufträge jeder Größe zuverlässig umzusetzen.\n\nUnser Team umfasst erfahrene Designer, Schnittmacher und Qualitätssicherungsspezialisten.",
+    "images": ["https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800"],
+    "videos": [],
+    "order": 2,
+    "isActive": true
+  },
+  {
+    "id": "ab-capability",
+    "section": "capability",
+    "title": "Production Capability",
+    "titleDe": "Produktionskapazität",
+    "content": "We can produce up to 50,000 pieces per month with quick turnaround times. Our minimum order quantity starts at just 50 pieces per design.",
+    "contentDe": "Wir produzieren bis zu 50.000 Stück pro Monat mit kurzen Durchlaufzeiten. Unsere Mindestbestellmenge beginnt bei nur 50 Stück pro Design.",
+    "images": ["https://images.unsplash.com/photo-1563620345329-252adf879b6c?w=800"],
+    "videos": [],
+    "order": 3,
+    "isActive": true
+  }
+]

@@ -1,0 +1,58 @@
+[
+  {
+    "id": "t-john",
+    "author": "John Smith",
+    "authorDe": "John Smith",
+    "company": "City FC",
+    "companyDe": "City FC",
+    "content": "Excellent quality and fast turnaround. We've been ordering from OEMWears for 3 years and couldn't be happier.",
+    "contentDe": "Hervorragende Qualität und schnelle Lieferung. Wir bestellen seit 3 Jahren bei OEMWears und könnten nicht zufriedener sein.",
+    "rating": 5,
+    "image": null,
+    "blurAuthor": false,
+    "blurCompany": false,
+    "isActive": true
+  },
+  {
+    "id": "t-sarah",
+    "author": "Sarah Johnson",
+    "authorDe": "Sarah Johnson",
+    "company": "SportsTech Apparel",
+    "companyDe": "SportsTech Apparel",
+    "content": "Working with OEMWears was a great experience. They delivered exactly what we envisioned for our brand.",
+    "contentDe": "Die Zusammenarbeit mit OEMWears war eine großartige Erfahrung. Sie haben genau das geliefert, was wir für unsere Marke vorgestellt hatten.",
+    "rating": 5,
+    "image": null,
+    "blurAuthor": false,
+    "blurCompany": false,
+    "isActive": true
+  },
+  {
+    "id": "t-mike",
+    "author": "Mike Chen",
+    "authorDe": "Mike Chen",
+    "company": "Elite Teams",
+    "companyDe": "Elite Teams",
+    "content": "We ordered uniforms for our entire league of 200+ players. OEMWears handled everything professionally.",
+    "contentDe": "Wir haben Trikots für unsere gesamte Liga mit 200+ Spielern bestellt. OEMWears hat alles professionell abgewickelt.",
+    "rating": 5,
+    "image": null,
+    "blurAuthor": false,
+    "blurCompany": false,
+    "isActive": true
+  },
+  {
+    "id": "t-emma",
+    "author": "Emma Wilson",
+    "authorDe": "Emma Wilson",
+    "company": "FitLife Gym",
+    "companyDe": "FitLife Gym",
+    "content": "Great value for money. The team jerseys look professional and our members love them.",
+    "contentDe": "Tolles Preis-Leistungs-Verhältnis. Die Mannschaftstrikots sehen professionell aus und unsere Mitglieder lieben sie.",
+    "rating": 4,
+    "image": null,
+    "blurAuthor": false,
+    "blurCompany": false,
+    "isActive": true
+  }
+]
