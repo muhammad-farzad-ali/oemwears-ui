@@ -6,8 +6,9 @@
   const { footer, nav } = t;
 
   const quickLinks = [
-    { href: '/products', label: nav.products },
-    { href: '/customization', label: nav.customization },
+    { href: '/apparel', label: nav.apparel },
+    { href: '/services', label: nav.services },
+    { href: '/partners', label: nav.partners },
     { href: '/about', label: nav.about },
     { href: '/contact', label: nav.contact }
   ];
@@ -24,7 +25,7 @@
           <span class="text-slate-700">{BRAND.name.substring(3)}</span>
         </h3>
         <p class="text-sm text-muted-foreground mb-6 leading-relaxed">
-          {t.brand.description}
+          {t.footer.tagline}
         </p>
       </div>
 

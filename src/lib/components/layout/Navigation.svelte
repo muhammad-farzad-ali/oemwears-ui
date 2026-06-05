@@ -6,10 +6,10 @@
 
   const navItems = [
     { href: '/', label: t.nav.home },
-    { href: '/products', label: t.nav.products },
-    { href: '/customization', label: t.nav.customization },
+    { href: '/apparel', label: t.nav.apparel },
+    { href: '/services', label: t.nav.services },
     { href: '/about', label: t.nav.about },
-    { href: '/certifications', label: t.nav.certifications },
+    { href: '/partners', label: t.nav.partners },
     { href: '/policies', label: t.nav.policies },
     { href: '/contact', label: t.nav.contact }
   ];
