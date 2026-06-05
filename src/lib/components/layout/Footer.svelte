@@ -18,11 +18,8 @@
   <div class="container mx-auto px-4 py-16">
     <div class="grid grid-cols-1 md:grid-cols-4 gap-10">
       <div>
-        <h3 class="font-bold text-xl mb-4">
-          <span class="bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent">
-            {BRAND.name.substring(0, 3)}
-          </span>
-          <span class="text-slate-700">{BRAND.name.substring(3)}</span>
+        <h3 class="font-bold text-xl mb-4 text-slate-700">
+          {BRAND.name}
         </h3>
         <p class="text-sm text-muted-foreground mb-6 leading-relaxed">
           {t.footer.tagline}

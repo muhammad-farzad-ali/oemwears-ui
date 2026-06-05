@@ -33,11 +33,8 @@
   class="sticky top-0 z-50 w-full border-b border-white/10 bg-white/80 backdrop-blur-xl supports-[backdrop-filter]:bg-white/60"
 >
   <div class="container flex h-16 items-center justify-between mx-auto px-4">
-    <a href="/" class="flex items-center gap-2 font-bold text-xl transition-transform hover:scale-105">
-      <span class="bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent">
-        {BRAND.name.substring(0, 3)}
-      </span>
-      <span class="text-slate-700">{BRAND.name.substring(3)}</span>
+    <a href="/" class="flex items-center gap-2 font-bold text-xl transition-transform hover:scale-105 text-slate-700">
+      {BRAND.name}
     </a>
 
     <nav class="hidden lg:flex items-center gap-1">
