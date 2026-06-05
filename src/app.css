@@ -80,3 +80,60 @@ body {
     max-width: 1280px;
   }
 }
+
+/* German text contains long compound words (e.g. "Mindestbestellmengen",
+   "Produktionspartner-Länder", "Zolldokumente"). These would otherwise
+   overflow narrow UI elements like buttons, badges, table cells, card
+   titles, and flex children. Three rules handle this:
+
+   1. `overflow-wrap: anywhere` on text-bearing elements breaks a word at
+      any character if no natural break exists. More aggressive than
+      `break-word` (which only breaks if the word would overflow its
+      container; `anywhere` lets the algorithm break a word that *would*
+      fit but prevents an earlier sibling from doing so).
+   2. `min-width: 0` on flex/grid children — flex/grid items default to
+      `min-width: auto`, which is content-width, so a long word forces
+      the column wider than its grid track. `min-width: 0` lets the item
+      shrink and the `overflow-wrap` rule above engage.
+   3. `hyphens: auto` lets the browser hyphenate German compounds using
+      the document's `lang` attribute (already set to "de" in app.html). */
+body {
+  hyphens: auto;
+  -webkit-hyphens: auto;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+span,
+li,
+a,
+button,
+label,
+td,
+th,
+blockquote,
+dd,
+dt {
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+.flex > *,
+.grid > *,
+[class*='flex-'] > * {
+  min-width: 0;
+}
+
+/* Buttons and badges are the most common offenders: they have hard-coded
+   padding that pushes a long word outside the rounded container. */
+button,
+a[class*='inline-flex'],
+[class*='rounded-full'],
+[class*='rounded-xl']:not([class*='rounded-xl-bg']) {
+  overflow-wrap: anywhere;
+}
