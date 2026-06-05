@@ -26,10 +26,14 @@
           <Card class="group border-0 shadow-xl shadow-slate-200/50 bg-white h-full">
             <CardContent class="pt-8 text-center flex flex-col h-full">
               <div
-                class="text-5xl mb-4 group-hover:scale-110 transition-transform duration-300"
-                aria-hidden="true"
+                class="w-16 h-12 mb-4 mx-auto rounded-lg overflow-hidden shadow-md ring-1 ring-slate-200 group-hover:scale-110 transition-transform duration-300 bg-white"
               >
-                {country.flag}
+                <img
+                  src={country.flag}
+                  alt={`${country.name} flag`}
+                  class="w-full h-full object-cover"
+                  loading="lazy"
+                />
               </div>
               <h3 class="font-bold text-xl mb-2 flex items-center justify-center gap-1.5">
                 <MapPin class="h-4 w-4 text-primary" />
