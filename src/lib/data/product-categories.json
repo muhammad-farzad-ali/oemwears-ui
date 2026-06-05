@@ -1,8 +1,0 @@
-[
-  { "id": "c-jerseys", "value": "jerseys", "label": "Jerseys", "labelDe": "Trikots", "order": 1, "isActive": true },
-  { "id": "c-shorts", "value": "shorts", "label": "Shorts", "labelDe": "Shorts", "order": 2, "isActive": true },
-  { "id": "c-shirts", "value": "shirts", "label": "T-Shirts", "labelDe": "T-Shirts", "order": 3, "isActive": true },
-  { "id": "c-socks", "value": "socks", "label": "Socks", "labelDe": "Socken", "order": 4, "isActive": true },
-  { "id": "c-sets", "value": "sets", "label": "Complete Sets", "labelDe": "Komplettsets", "order": 5, "isActive": true },
-  { "id": "c-other", "value": "other", "label": "Other", "labelDe": "Sonstiges", "order": 6, "isActive": true }
-]
