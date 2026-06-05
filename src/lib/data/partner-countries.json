@@ -1,0 +1,54 @@
+[
+  {
+    "id": "pc-pakistan",
+    "value": "pakistan",
+    "name": "Pakistan",
+    "nameDe": "Pakistan",
+    "flag": "🇵🇰",
+    "description": "Deep sportswear and sublimation expertise, especially for football kits, teamwear, and performance apparel. Competitive pricing for medium and large runs.",
+    "descriptionDe": "Tiefe Expertise in Sportbekleidung und Sublimation, besonders für Fußball-Kits, Mannschaftsbekleidung und Performance-Apparel. Wettbewerbsfähige Preise für mittlere und große Auflagen.",
+    "strengths": ["Sublimation", "Football kits", "Performance wear"],
+    "strengthsDe": ["Sublimation", "Fußball-Kits", "Performance-Bekleidung"],
+    "order": 1,
+    "isActive": true
+  },
+  {
+    "id": "pc-turkey",
+    "value": "turkey",
+    "name": "Turkey",
+    "nameDe": "Türkei",
+    "flag": "🇹🇷",
+    "description": "European proximity with strong quality and faster shipping times. Great for mid-premium basics, hoodies, and tracksuits with shorter lead times.",
+    "descriptionDe": "Europäische Nähe mit starker Qualität und schnelleren Versandzeiten. Ideal für gehobene Basics, Hoodies und Trainingsanzüge mit kürzeren Lieferzeiten.",
+    "strengths": ["Mid-premium basics", "Hoodies", "Faster EU shipping"],
+    "strengthsDe": ["Mittelpreislage", "Hoodies", "Schnellerer EU-Versand"],
+    "order": 2,
+    "isActive": true
+  },
+  {
+    "id": "pc-portugal",
+    "value": "portugal",
+    "name": "Portugal",
+    "nameDe": "Portugal",
+    "flag": "🇵🇹",
+    "description": "Premium EU manufacturing with strong textile heritage. Ideal for higher-end collections, sustainable fabrics, and brands that need an EU-made story.",
+    "descriptionDe": "Hochwertige EU-Fertigung mit starker Textiltradition. Ideal für gehobene Kollektionen, nachhaltige Stoffe und Marken, die eine 'Made in EU'-Geschichte erzählen wollen.",
+    "strengths": ["EU manufacturing", "Premium quality", "Sustainable fabrics"],
+    "strengthsDe": ["EU-Fertigung", "Premium-Qualität", "Nachhaltige Stoffe"],
+    "order": 3,
+    "isActive": true
+  },
+  {
+    "id": "pc-china",
+    "value": "china",
+    "name": "China",
+    "nameDe": "China",
+    "flag": "🇨🇳",
+    "description": "Technical fabrics, complex knit constructions, and large-scale scalability. Best for performance fabrics, complex garments, and high-volume orders.",
+    "descriptionDe": "Technische Stoffe, komplexe Maschenkonstruktionen und Skalierbarkeit in großem Stil. Ideal für Performance-Stoffe, komplexe Kleidungsstücke und Großaufträge.",
+    "strengths": ["Technical fabrics", "Complex knits", "Large-volume runs"],
+    "strengthsDe": ["Technische Stoffe", "Komplexe Maschenwaren", "Großauflagen"],
+    "order": 4,
+    "isActive": true
+  }
+]
