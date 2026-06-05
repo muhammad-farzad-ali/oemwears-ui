@@ -1,7 +1,7 @@
 <script lang="ts">
   import { CheckCircle } from 'lucide-svelte';
   import { t } from '$lib/content';
-  import { productCategories } from '$lib/data';
+  import { services } from '$lib/data';
   import { sendToDiscord } from '$lib/utils/discord';
   import type { ContactPayload } from '$lib/types';
   import Button from '$lib/components/ui/Button.svelte';
@@ -19,7 +19,7 @@
   let email = $state('');
   let company = $state('');
   let phone = $state('');
-  let productInterest = $state('');
+  let serviceInterest = $state('');
   let quantity = $state('');
   let message = $state('');
 
@@ -32,7 +32,7 @@
     const errs: Partial<Record<keyof ContactPayload, string>> = {};
     if (name.trim().length < 2) errs.name = t.contact.validation.nameRequired;
     if (!EMAIL_RE.test(email.trim())) errs.email = t.contact.validation.emailInvalid;
-    if (productInterest.trim().length < 1) errs.productInterest = t.contact.validation.productRequired;
+    if (serviceInterest.trim().length < 1) errs.productInterest = t.contact.validation.serviceRequired;
     if (message.trim().length < 10) errs.message = t.contact.validation.messageRequired;
     fieldErrors = errs;
     return Object.keys(errs).length === 0;
@@ -43,18 +43,16 @@
     email = '';
     company = '';
     phone = '';
-    productInterest = '';
+    serviceInterest = '';
     quantity = '';
     message = '';
     fieldErrors = {};
     errorMsg = null;
   }
 
-  function getProductLabel(value: string): string {
-    const cat = productCategories.find((c) => c.value === value);
-    if (!cat) return value;
-    const key = value as keyof typeof t.contact.productOptions;
-    return t.contact.productOptions[key] ?? cat.label;
+  function getServiceLabel(value: string): string {
+    const svc = services.find((s) => s.value === value);
+    return svc?.title ?? value;
   }
 
   async function handleSubmit(event: SubmitEvent) {
@@ -69,7 +67,7 @@
         email: email.trim(),
         company: company.trim() || undefined,
         phone: phone.trim() || undefined,
-        productInterest: getProductLabel(productInterest),
+        productInterest: getServiceLabel(serviceInterest),
         quantity: quantity.trim() || undefined,
         message: message.trim()
       };
@@ -157,20 +155,18 @@
 
         <div class="grid md:grid-cols-2 gap-4">
           <div class="space-y-2">
-            <Label for="productInterest" class="font-medium text-slate-700"
-              >{t.contact.productInterestLabel} {t.common.required}</Label
+            <Label for="serviceInterest" class="font-medium text-slate-700"
+              >{t.contact.serviceInterestLabel} {t.common.required}</Label
             >
             <select
-              id="productInterest"
-              bind:value={productInterest}
+              id="serviceInterest"
+              bind:value={serviceInterest}
               class="flex h-12 w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/20 focus-visible:border-primary focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 transition-all duration-200 hover:border-slate-300 appearance-none cursor-pointer bg-[url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%2364748b%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpolyline%20points%3D%226%209%2012%2015%2018%209%22%3E%3C%2Fpolyline%3E%3C%2Fsvg%3E')] bg-[right_0.75rem_center] bg-[length:1.25rem] bg-no-repeat pr-10"
             >
-              <option value="">{t.contact.productPlaceholder}</option>
-              {#each productCategories as cat (cat.id)}
-                <option value={cat.value}
-                  >{t.contact.productOptions[cat.value as keyof typeof t.contact.productOptions] ??
-                    cat.label}</option
-                >
+              <option value="">{t.contact.servicePlaceholder}</option>
+              <option value="other">{t.contact.serviceOptions.other}</option>
+              {#each services as svc (svc.id)}
+                <option value={svc.value}>{svc.title}</option>
               {/each}
             </select>
             {#if fieldErrors.productInterest}

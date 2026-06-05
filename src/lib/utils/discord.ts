@@ -34,7 +34,7 @@ export function buildContactEmbed(payload: ContactPayload) {
       { name: 'Email', value: payload.email, inline: true },
       asField(payload.phone),
       asField(payload.company),
-      { name: 'Product', value: payload.productInterest, inline: true },
+      { name: 'Service', value: payload.productInterest, inline: true },
       asField(payload.quantity),
       {
         name: 'Message',
@@ -42,14 +42,14 @@ export function buildContactEmbed(payload: ContactPayload) {
       }
     ],
     timestamp: new Date().toISOString(),
-    footer: { text: 'OEMWears Contact Form' }
+    footer: { text: 'Sportbekleidungsagentur Contact Form' }
   };
 }
 
 /** POST a contact-form submission to the configured Discord webhook. */
 export async function sendToDiscord(payload: ContactPayload): Promise<void> {
   const body = {
-    username: 'OEMWears Contact',
+    username: 'Sportbekleidungsagentur Contact',
     embeds: [buildContactEmbed(payload)]
   };
 
