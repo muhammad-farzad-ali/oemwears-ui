@@ -5,46 +5,48 @@
  * data files in src/lib/data/ can be ported one-to-one from the seed files.
  */
 
-export interface Product {
-  id: string;
-  name: string;
-  category: string;
-  description: string;
-  images: string[];
-  fabric?: string | null;
-  printingMethods: string[];
-  features: string[];
-  isActive: boolean;
-  createdAt?: string;
-  updatedAt?: string;
-  /** German overrides — merged into the base fields by the data loader when LOCALE === 'de'. */
-  nameDe?: string;
-  descriptionDe?: string;
-  fabricDe?: string | null;
-  printingMethodsDe?: string[];
-  featuresDe?: string[];
-}
-
-export interface ProductCategory {
+export interface ApparelType {
   id: string;
   value: string;
-  label: string;
+  name: string;
+  description: string;
+  image: string;
+  examples: string[];
+  features: string[];
   order: number;
   isActive: boolean;
-  labelDe?: string;
+  nameDe?: string;
+  descriptionDe?: string;
+  featuresDe?: string[];
+  examplesDe?: string[];
 }
 
-export interface Customization {
+export interface Service {
   id: string;
-  type: string;
+  value: string;
   title: string;
   description: string;
-  options?: Record<string, unknown> | null;
-  images: string[];
+  icon: string;
+  highlights: string[];
   order: number;
   isActive: boolean;
   titleDe?: string;
   descriptionDe?: string;
+  highlightsDe?: string[];
+}
+
+export interface PartnerCountry {
+  id: string;
+  value: string;
+  name: string;
+  flag: string;
+  description: string;
+  strengths: string[];
+  order: number;
+  isActive: boolean;
+  nameDe?: string;
+  descriptionDe?: string;
+  strengthsDe?: string[];
 }
 
 export interface Certification {
