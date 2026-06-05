@@ -61,6 +61,7 @@
               {CONTACT.email}
             </a>
           </li>
+          <!-- Phone temporarily hidden
           <li class="flex items-start gap-3 text-muted-foreground group">
             <div
               class="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0 group-hover:bg-primary/20 transition-colors"
@@ -74,6 +75,7 @@
               {CONTACT.phone}
             </a>
           </li>
+          -->
           <li class="flex items-start gap-3 text-muted-foreground group">
             <div
               class="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0 group-hover:bg-primary/20 transition-colors"

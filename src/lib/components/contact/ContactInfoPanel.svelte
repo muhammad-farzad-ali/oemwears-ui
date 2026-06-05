@@ -15,13 +15,14 @@
       href: `mailto:${CONTACT.email}`,
       isText: false
     },
-    {
-      icon: Phone,
-      label: t.contact.phoneLabel,
-      value: CONTACT.phone,
-      href: `tel:${CONTACT.phone.replace(/\s/g, '')}`,
-      isText: false
-    },
+    // Phone temporarily hidden
+    // {
+    //   icon: Phone,
+    //   label: t.contact.phoneLabel,
+    //   value: CONTACT.phone,
+    //   href: `tel:${CONTACT.phone.replace(/\s/g, '')}`,
+    //   isText: false
+    // },
     {
       icon: MapPin,
       label: t.contact.addressLabel,
