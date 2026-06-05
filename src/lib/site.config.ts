@@ -12,8 +12,19 @@ export type Locale = "en" | "de";
 export const LOCALE: Locale = "de";
 
 export const BRAND = {
-  name: "OEMWears",
-  domain: "https://example.com",
+  name: "Sportbekleidungsagentur",
+  domain: "https://example.com"
+} as const;
+
+export const CONTACT = {
+  email: "info@sportbekleidungsagentur.de",
+  phone: "+49 30 12345678",
+  address: "Germany",
+  whatsappNumber: "493012345678",
+  hours: "Mo - Fr: 9:00 - 18:00\nSa: 9:00 - 13:00",
+  facebookUrl: "https://facebook.com",
+  instagramUrl: "https://instagram.com",
+  linkedinUrl: "https://linkedin.com"
 } as const;
 
 export const CONTACT = {
