@@ -2,7 +2,7 @@
   import { Package, Clock, Truck } from 'lucide-svelte';
   import { t } from '$lib/content';
   import { pageTitle } from '$lib/utils/seo';
-  import { policies } from '$lib/data';
+  import { policies, apparelTypes } from '$lib/data';
   import Card from '$lib/components/ui/Card.svelte';
   import CardContent from '$lib/components/ui/CardContent.svelte';
   import CardHeader from '$lib/components/ui/CardHeader.svelte';
@@ -17,16 +17,12 @@
   const moqPolicy = policies.find((p) => p.type === 'moq');
   const leadTimePolicy = policies.find((p) => p.type === 'lead-time');
 
-  const moqRowLabels: Record<string, string> = {
-    jerseys: t.contact.productOptions.jerseys,
-    shorts: t.contact.productOptions.shorts,
-    shirts: t.contact.productOptions.shirts,
-    socks: t.contact.productOptions.socks,
-    sets: t.contact.productOptions.sets
-  };
+  const moqRowLabels: Record<string, string> = Object.fromEntries(
+    apparelTypes.map((a) => [a.value, a.name])
+  );
 
   const leadTimeRowLabels: Record<string, string> = {
-    sample: t.policies.leadTime.stageLabels.sample,
+    sampling: t.policies.leadTime.stageLabels.sampling,
     production: t.policies.leadTime.stageLabels.production,
     shipping: t.policies.leadTime.stageLabels.shipping
   };
@@ -37,10 +33,15 @@
   <meta name="description" content={t.policies.subtitle} />
 </svelte:head>
 
-<div class="container mx-auto px-4 py-12">
+<div class="container mx-auto px-4 py-16">
   <div class="text-center mb-12">
-    <h1 class="text-4xl font-bold mb-4">{t.policies.title}</h1>
-    <p class="text-muted-foreground max-w-2xl mx-auto">{t.policies.subtitle}</p>
+    <span
+      class="inline-block px-4 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-semibold mb-4"
+    >
+      {t.policies.badge}
+    </span>
+    <h1 class="text-4xl lg:text-5xl font-bold mb-4">{t.policies.title}</h1>
+    <p class="text-muted-foreground max-w-2xl mx-auto text-lg">{t.policies.subtitle}</p>
   </div>
 
   <div class="grid lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
