@@ -1,10 +1,10 @@
 {
   "section": "hero",
   "images": [
-    "https://images.unsplash.com/photo-1581094288338-2314dddb7ece?w=1200",
-    "https://images.unsplash.com/photo-1556906781-9a412961c28c?w=1200",
-    "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=1200"
+    "/hero_section/packing.jpg",
+    "/hero_section/pattern.jpg",
+    "/hero_section/printing.jpg"
   ],
-  "fallbackImage": "https://images.unsplash.com/photo-1581094288338-2314dddb7ece?w=1200",
+  "fallbackImage": "/hero_section/packing.jpg",
   "ctaLink": "/contact"
 }
