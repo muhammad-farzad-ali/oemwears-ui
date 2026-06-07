@@ -50,3 +50,12 @@ export const PLACEHOLDER_IMAGES = {
  */
 export const DISCORD_WEBHOOK_URL =
   "https://discordapp.com/api/webhooks/1512407367042597026/Kgif4W6K1a0jgKmuWSQ_-RyGcJaKtmDIvGVhwYM5yMGzsXd9ENadfeGzAUJK3wsRMAxK";
+
+/**
+ * Google Analytics 4 measurement ID. The actual gtag.js `<script>` tag is
+ * installed in `src/app.html` (HTML cannot import from this file), but the
+ * value is duplicated here so the SPA route-change handler in
+ * `src/routes/+layout.svelte` can read it. If you change the ID, also update
+ * the snippet in `app.html` and rebuild.
+ */
+export const GA_MEASUREMENT_ID = "G-LE0NWV69GJ";
