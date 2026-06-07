@@ -4,3 +4,8 @@
  * result is statically analyzable and tree-shakeable.
  */
 declare const __BUILD_LOCALE__: 'en' | 'de';
+
+interface Window {
+  dataLayer: unknown[];
+  gtag: (...args: unknown[]) => void;
+}
