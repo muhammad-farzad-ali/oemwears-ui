@@ -1,7 +1,8 @@
 <script lang="ts">
   import '../app.css';
-  import { LOCALE, BRAND } from '$lib/site.config';
+  import { LOCALE, BRAND, GA_MEASUREMENT_ID } from '$lib/site.config';
   import { t } from '$lib/content';
+  import { afterNavigate } from '$app/navigation';
   import Navigation from '$lib/components/layout/Navigation.svelte';
   import Footer from '$lib/components/layout/Footer.svelte';
   import WhatsAppButton from '$lib/components/layout/WhatsAppButton.svelte';
@@ -12,6 +13,13 @@
     if (typeof document !== 'undefined') {
       document.documentElement.lang = LOCALE;
     }
+  });
+
+  afterNavigate(({ to }) => {
+    if (typeof window === 'undefined' || !window.gtag || !to) return;
+    window.gtag('config', GA_MEASUREMENT_ID, {
+      page_path: to.url.pathname + to.url.search
+    });
   });
 </script>
 
