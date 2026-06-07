@@ -368,6 +368,70 @@ Plus:
 
 ---
 
+## T21 — Add `robots.txt` and `sitemap.xml` for Google Search Console  [x]
+
+**Goal**: Ship the two static files that Google Search Console needs to discover and index the site. Both are placed in `static/` so `adapter-static` copies them verbatim to the build root.
+
+**Context**:
+- The site is a pure-CSR SPA on `sportbekleidungsagentur.de` (custom domain via `static/CNAME`).
+- Public routes to list in the sitemap: `/`, `/apparel`, `/services`, `/partners`, `/about`, `/policies`, `/contact` (7 total, all under `src/routes/`).
+- Domain scope: apex is canonical, `www.` 301-redirects to apex (DNS-layer, not in the repo).
+- GSC verification: DNS TXT records (no extra files in the repo).
+
+**Key files**:
+- `static/robots.txt` (new) — `User-agent: *`, `Allow: /`, plus a `Sitemap:` line pointing at the apex sitemap
+- `static/sitemap.xml` (new) — XML sitemap listing the 7 apex-domain URLs, with `<changefreq>` and `<priority>` hints
+
+**Acceptance**:
+- `npm run build` succeeds; `build/robots.txt` and `build/sitemap.xml` exist and are byte-identical to the `static/` originals
+- `curl https://sportbekleidungsagentur.de/robots.txt` returns 200 with the right content (after deploy)
+- `curl https://sportbekleidungsagentur.de/sitemap.xml` returns 200 with `Content-Type: application/xml`
+- Sitemap contains exactly 7 `<url>` entries, all with `https://sportbekleidungsagentur.de/...` (no www.)
+- GSC → Sitemats shows "Success" after submitting `https://sportbekleidungsagentur.de/sitemap.xml`
+
+**Manual follow-up (not in this ticket)**:
+- Add a 301 redirect from `www.sportbekleidungsagentur.de` to `sportbekleidungsagentur.de` at the DNS / hosting layer
+- Add the two `google-site-verification=...` TXT records (one per property) for GSC verification
+- In GSC: add properties for both `https://sportbekleidungsagentur.de/` and `https://www.sportbekleidungsagentur.de/`, submit the sitemap, then **Request Indexing** for each of the 7 routes via URL Inspection
+
+---
+
+## T22 — Per-route `<svelte:head>` for SEO (follow-up, NOT in this milestone)
+
+**Goal**: Make every route distinct in Google's eyes. Right now all 7 routes inherit the same generic `<title>` and `<meta name="description">` from `+layout.svelte`, so even after the SPA hydrates, Google sees a single repeated page.
+
+**Why this is needed**:
+- `prerender = false` and `fallback: 'index.html'` mean SvelteKit produces one `index.html` shell. Google's crawler can run JS and wait for the rendered DOM, but only if the rendered DOM has unique tags per route.
+- Without unique per-page tags, GSC will index the 7 URLs from the sitemap but show duplicate `<title>`/`<meta description>` in the search results, which hurts CTR and ranking.
+
+**Key files** (one `<svelte:head>` block per route):
+- `src/routes/+page.svelte` — title, description, canonical, og:* for the home page
+- `src/routes/apparel/+page.svelte`
+- `src/routes/services/+page.svelte`
+- `src/routes/partners/+page.svelte`
+- `src/routes/about/+page.svelte`
+- `src/routes/policies/+page.svelte`
+- `src/routes/contact/+page.svelte`
+
+**Acceptance**:
+- After loading any route, DevTools → Elements shows a route-specific `<title>` and `<meta name="description">`
+- GSC → URL Inspection → "Rendered HTML" tab shows the unique per-route title for each of the 7 routes
+- Both `LOCALE='en'` and `LOCALE='de'` builds produce translated titles/descriptions (sourced from the existing `t` content object)
+
+---
+
+## T23 — Build-time sitemap generator (follow-up, only if routes grow)
+
+**Goal**: Replace the hand-maintained `static/sitemap.xml` with a small Vite plugin that reads `src/routes/` at build time and emits `build/sitemap.xml` automatically.
+
+**Why defer**: the project currently has 7 hand-listed routes. A generator is only worth its complexity once routes change frequently or grow past ~15.
+
+**Sketch** (not implemented in this milestone):
+- A Vite plugin in `vite.config.ts` that walks `src/routes/` for `+page.svelte` files, builds the URL list, and writes `build/sitemap.xml` in the `closeBundle` hook (same place `githubPagesFallback` already runs).
+- Same plugin also rewrites `static/robots.txt` → `build/robots.txt` with the dynamic sitemap URL injected (or just keep `static/robots.txt` static; the URL won't change).
+
+---
+
 ## Dependency summary (for `package.json`)
 
 Runtime:
