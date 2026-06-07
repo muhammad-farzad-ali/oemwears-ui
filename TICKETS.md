@@ -295,6 +295,79 @@ Plus:
 
 ---
 
+## T16 — Add GA measurement ID constant  [x]
+
+**Goal**: Centralize the Google Analytics 4 measurement ID in `site.config.ts` so it is referenced from a single place (matches the existing `LOCALE` / `BRAND` / `CONTACT` pattern).
+
+**Key files**:
+- `src/lib/site.config.ts` — add `export const GA_MEASUREMENT_ID = 'G-LE0NWV69GJ';`
+
+**Acceptance**:
+- `import { GA_MEASUREMENT_ID } from '$lib/site.config'` resolves
+- ID is `G-LE0NWV69GJ`
+- `npm run check` passes
+
+---
+
+## T17 — Type the gtag globals  [x]
+
+**Goal**: Make `window.gtag` and `window.dataLayer` available with proper types so any component can fire GA events without an extra `@types/gtag.js` dependency.
+
+**Key files**:
+- `src/app.d.ts` — extend the existing `declare` block with `interface Window { dataLayer: unknown[]; gtag: (...args: unknown[]) => void; }`
+
+**Acceptance**:
+- `window.gtag('event', 'foo', { bar: 1 })` type-checks from any `.ts` / `.svelte` file
+- The existing `__BUILD_LOCALE__` constant is preserved
+- `npm run check` passes
+
+---
+
+## T18 — Inject Google tag snippet in `app.html`  [x]
+
+**Goal**: Place the official GA4 gtag.js snippet directly after `<head>` in the static SPA shell, so the tag is present on every page of the app (the app is a pure CSR SPA, so `app.html` is the only static `<head>`).
+
+**Key files**:
+- `src/app.html` — insert the Google-supplied snippet (async script + inline `gtag('js', new Date())` + `gtag('config', GA_MEASUREMENT_ID)`) immediately after `<head>`
+- The snippet ID is hardcoded in `app.html` (it is HTML, not TS, so it cannot import from `site.config.ts`); T19's runtime code reads from the config constant
+
+**Acceptance**:
+- View source of `build/index.html` shows the snippet exactly once, right after `<head>`, with the `<!-- Google tag (gtag.js) -->` comment
+- DevTools → Network on the served site shows exactly one request for `https://www.googletagmanager.com/gtag/js?id=G-LE0NWV69GJ`
+- `window.dataLayer` is an array containing the `js` and `config` pushes
+- GA4 **Realtime** view shows one active user after load
+
+---
+
+## T19 — Track SPA route changes as pageviews  [x]
+
+**Goal**: Fire an additional `gtag('config', ...)` call on every successful client-side navigation, so GA records one pageview per route in the SPA (not just the initial load).
+
+**Key files**:
+- `src/routes/+layout.svelte` — import `afterNavigate` from `$app/navigation` and `GA_MEASUREMENT_ID` from `$lib/site.config`; add an `afterNavigate(({ to }) => …)` handler that calls `window.gtag('config', GA_MEASUREMENT_ID, { page_path: to.url.pathname + to.url.search })`
+
+**Why this matters**: the snippet in `app.html` only fires on first load. Without this handler, every CSR route change is invisible to GA and the dashboard will show `1 page/session` for the entire visit.
+
+**Acceptance**:
+- After visiting `/`, clicking through to `/products`, `/contact` in the GA4 **Realtime** → **DebugView** shows 3 distinct `page_view` events with the correct `page_location` for each
+- No errors in the browser console when navigating
+- The handler is a no-op if `window.gtag` is not defined (defensive guard)
+- `npm run check` passes
+
+---
+
+## T20 — Document the GA integration  [x]
+
+**Goal**: Provide a junior-dev-friendly walkthrough of how GA is wired in, what each piece does, how to verify it, and how to swap the ID or add custom events in the future.
+
+**Key files**:
+- `GA_INTEGRATION.md` — covers: where the ID lives, why `app.html` is the injection point (pure-CSR SPA), how the pageview handler works (`afterNavigate`), how to add custom events, how to verify with GA4 DebugView, and a "things to NOT do" section
+
+**Acceptance**:
+- A new dev who has never seen the code can read the doc and (a) find the GA ID, (b) explain why it lives in `app.html` and not a route component, (c) add a new `gtag('event', ...)` call, (d) verify it in DebugView
+
+---
+
 ## Dependency summary (for `package.json`)
 
 Runtime:
